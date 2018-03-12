@@ -1,25 +1,28 @@
-import {BrowserModule} from "@angular/platform-browser";
-import {NgModule} from "@angular/core";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpModule} from "@angular/http";
-import {AppComponent} from "./app.component";
-import {firebaseConfig} from "environments/firebaseConfig";
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpModule } from "@angular/http";
+import { AppComponent } from "./app.component";
+import { firebaseConfig } from "environments/firebaseConfig";
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import {AuthService} from "app/shared/auth.service";
-import {LoginUserComponent} from "app/login-user/login-user.component";
-import {DisplayUserComponent} from "app/display-user/display-user.component";
-import {RegisterUserComponent} from "app/register-user/register-user.component";
-import {AlertModule} from "ngx-bootstrap";
-import {ResetPasswordComponent} from "./reset-password/reset-password.component";
-import {Routes, RouterModule} from "@angular/router";
-import {HomePageComponent} from "./pages/home-page.component";
-import {RegisterPageComponent} from "./pages/register-page.component";
-import {AllInOnePageComponent} from "./pages/all-in-one-page.component";
-import {LoginPageComponent} from "./pages/login-page.component";
+import { AuthService } from "app/shared/auth.service";
+import { BlogStoreService } from "app/shared/blog-store.service";
+import { LoginUserComponent } from "app/login-user/login-user.component";
+import { DisplayUserComponent } from "app/display-user/display-user.component";
+import { RegisterUserComponent } from "app/register-user/register-user.component";
+import { NewBlogPostComponent } from "app/admin/new-blog-post/new-blog-post.component";
+import { AlertModule } from "ngx-bootstrap";
+import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { Routes, RouterModule } from "@angular/router";
+import { HomePageComponent } from "./pages/home-page.component";
+import { RegisterPageComponent } from "./pages/register-page.component";
+import { AllInOnePageComponent } from "./pages/all-in-one-page.component";
+import { LoginPageComponent } from "./pages/login-page.component";
 import { LoggedInGuard } from "app/shared/logged-in-guard";
 import { DashboardPageComponent } from './pages/dashboard-page.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 const routes: Routes = [
     { path: 'register', component: RegisterPageComponent },
@@ -27,6 +30,7 @@ const routes: Routes = [
     { path: 'reset-password', component: ResetPasswordComponent },
     { path: 'login', component: LoginPageComponent },
     { path: 'dashboard', component: DashboardPageComponent, canActivate: [LoggedInGuard] },
+    { path: 'new-blog-post', component: NewBlogPostComponent, canActivate: [LoggedInGuard] },
     { path: '', component: HomePageComponent }
 ];
 
@@ -41,7 +45,8 @@ const routes: Routes = [
         RegisterPageComponent,
         AllInOnePageComponent,
         LoginPageComponent,
-        DashboardPageComponent
+        DashboardPageComponent,
+        NewBlogPostComponent
     ],
     imports: [
         BrowserModule,
@@ -52,9 +57,11 @@ const routes: Routes = [
         AngularFireModule.initializeApp(firebaseConfig, "BulprosBlog"),
         AngularFireDatabaseModule,
         AngularFireAuthModule,
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes),
+        FroalaEditorModule.forRoot(),
+        FroalaViewModule.forRoot()
     ],
-    providers: [AuthService, LoggedInGuard],
+    providers: [AuthService, BlogStoreService, LoggedInGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {

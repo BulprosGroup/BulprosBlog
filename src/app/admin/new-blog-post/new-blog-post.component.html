@@ -1,0 +1,14 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col-auto">
+      <textarea class="" [froalaEditor]='options' formControlName="content" [(froalaModel)]="form.content"></textarea>
+    </div>
+  </div>
+
+  <hr />
+  <div [ngClass]="showPreview ? 'preview' : 'hidden'" [froalaView]="form.content"></div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="button" class="btn btn-default" [ngClass]="showPreview ? 'hidden' : ''" (click)="previewContent()">Preview</button>
+  <button type="button" class="btn btn-danger" [ngClass]="showPreview ? '' : 'hidden'" (click)="previewContent()">Hide Preview</button>
+</form>
