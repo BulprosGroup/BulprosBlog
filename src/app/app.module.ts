@@ -25,7 +25,7 @@ import { RegisterPageComponent } from "./pages/register-page.component";
 import { AllInOnePageComponent } from "./pages/all-in-one-page.component";
 import { LoginPageComponent } from "./pages/login-page.component";
 import { LoggedInGuard } from "app/shared/logged-in-guard";
-import { DashboardPageComponent } from './pages/dashboard-page.component';
+import { DashboardPageComponent } from './admin/dashboard/dashboard-page.component';
 
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 

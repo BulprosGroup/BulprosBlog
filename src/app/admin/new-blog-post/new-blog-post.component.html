@@ -1,14 +1,22 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-row">
     <div class="col-auto">
-      <textarea class="" [froalaEditor]='options' formControlName="content" [(froalaModel)]="form.content"></textarea>
+      <input type="text" placeholder="Title..." class="form-control" 
+      [ngClass]="title.invalid && (title.dirty || title.touched) ? 'alert alert-danger' : ''"
+        formControlName="title" data-ng-required="true" />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-auto">
+      <textarea   [ngClass]="content.invalid && (content.dirty || content.touched) ? 'alert alert-danger' : ''"
+       [froalaEditor]='options' formControlName="content" [(froalaModel)]="form.content" data-ng-required="true"></textarea>
     </div>
   </div>
 
   <hr />
   <div [ngClass]="showPreview ? 'preview' : 'hidden'" [froalaView]="form.content"></div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
   <button type="button" class="btn btn-default" [ngClass]="showPreview ? 'hidden' : ''" (click)="previewContent()">Preview</button>
   <button type="button" class="btn btn-danger" [ngClass]="showPreview ? '' : 'hidden'" (click)="previewContent()">Hide Preview</button>
 </form>

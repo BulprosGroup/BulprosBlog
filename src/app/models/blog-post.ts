@@ -1,8 +1,9 @@
-import { IBlogPost } from "./contracts/blog-post";
+import { UserInfo } from "../shared/user-info";
 
-export class BlogPost implements IBlogPost {
-    author: string;
+export class BlogPost {
+    author: UserInfo;
     content: string;
     datePublished: Date;
     dateModified: Date;
+    title: string;
 }

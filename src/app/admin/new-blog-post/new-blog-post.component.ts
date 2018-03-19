@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators, AbstractControl, FormGroup } from "@angular/forms";
+import { FormBuilder, Validators, AbstractControl, FormGroup, FormControl } from "@angular/forms";
 
 import { BlogStoreService } from "app/shared/blog-store.service";
+import { AuthService } from "app/shared/auth.service";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
@@ -17,26 +18,29 @@ import { BlogPost } from '../../models/blog-post';
 export class NewBlogPostComponent {
   form: FormGroup;
   content: AbstractControl;
+  title: AbstractControl;
   blogPost: BlogPost;
   showPreview: boolean;
   options: FroalaEditorModule;
 
-  constructor(private fb: FormBuilder, private blogStore: BlogStoreService) {
+  constructor(private fb: FormBuilder, private blogStore: BlogStoreService, private auth: AuthService) {
     this.showPreview = false;
 
     this.form = fb.group({
+      'title': ['', Validators.required],
       'content': ['', Validators.required]
     });
 
     this.content = this.form.controls['content'];
+    this.title = this.form.controls['title'];
     this.options = this.getFroalaOptions();
   }
 
   onSubmit($event) {
-    this.blogPost = this.form.value;
-    this.blogPost.datePublished = this.blogPost.datePublished || new Date();
-
-    this.blogStore.createBlogPost(this.blogPost);
+    if (this.form.valid) {
+      this.blogPost = this.form.value;
+      this.blogStore.createBlogPost(this.blogPost);
+    }
   }
 
   previewContent() {
@@ -54,7 +58,7 @@ export class NewBlogPostComponent {
         indent_size: 4,
         wrap_line_length: 0
       },
-      height: 500
+      height: 500,
     };
   }
 }
