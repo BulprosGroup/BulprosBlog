@@ -35,7 +35,7 @@ export class NewBlogPostComponent {
   onSubmit($event) {
     this.blogPost = this.form.value;
     this.blogPost.datePublished = this.blogPost.datePublished || new Date();
-    
+
     this.blogStore.createBlogPost(this.blogPost);
   }
 

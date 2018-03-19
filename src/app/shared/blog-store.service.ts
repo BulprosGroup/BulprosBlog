@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -9,16 +8,15 @@ import { BlogPost } from "../models/blog-post";
 
 @Injectable()
 export class BlogStoreService {
-  itemRef: AngularFireObject<any>;
-  item: Observable<any>;
+  private blogPostsCollection: AngularFirestoreCollection<BlogPost>;
+  blogPosts: Observable<BlogPost[]>;
 
-  constructor(private db: AngularFireDatabase) {
-    this.itemRef = db.object('item');
-    this.item = this.itemRef.valueChanges();
+  constructor(private afs: AngularFirestore) {
+    this.blogPostsCollection = afs.collection<BlogPost>("BlogPosts");
+    this.blogPosts = this.blogPostsCollection.valueChanges();
   }
 
   createBlogPost(blogPost: BlogPost) {
-    this.itemRef.set(blogPost);
+    this.blogPostsCollection.add(blogPost);
   }
-
 }

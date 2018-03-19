@@ -3,17 +3,21 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { AppComponent } from "./app.component";
+
 import { firebaseConfig } from "environments/firebaseConfig";
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule  } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+
 import { AuthService } from "app/shared/auth.service";
 import { BlogStoreService } from "app/shared/blog-store.service";
 import { LoginUserComponent } from "app/login-user/login-user.component";
 import { DisplayUserComponent } from "app/display-user/display-user.component";
 import { RegisterUserComponent } from "app/register-user/register-user.component";
 import { NewBlogPostComponent } from "app/admin/new-blog-post/new-blog-post.component";
+
 import { AlertModule } from "ngx-bootstrap";
+
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 import { Routes, RouterModule } from "@angular/router";
 import { HomePageComponent } from "./pages/home-page.component";
@@ -22,6 +26,7 @@ import { AllInOnePageComponent } from "./pages/all-in-one-page.component";
 import { LoginPageComponent } from "./pages/login-page.component";
 import { LoggedInGuard } from "app/shared/logged-in-guard";
 import { DashboardPageComponent } from './pages/dashboard-page.component';
+
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 const routes: Routes = [
@@ -55,7 +60,7 @@ const routes: Routes = [
         HttpModule,
         AlertModule.forRoot(),
         AngularFireModule.initializeApp(firebaseConfig, "BulprosBlog"),
-        AngularFireDatabaseModule,
+        AngularFirestoreModule,
         AngularFireAuthModule,
         RouterModule.forRoot(routes),
         FroalaEditorModule.forRoot(),

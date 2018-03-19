@@ -6,6 +6,7 @@ export const firebaseConfig = {
     authDomain: "bulprosblog.firebaseapp.com",
     databaseURL: "https://bulprosblog.firebaseio.com",
     storageBucket: "bulprosblog.appspot.com",
-    messagingSenderId: "1003093706142"
+    messagingSenderId: "1003093706142",
+    projectId: 'bulprosblog'
 };
 
