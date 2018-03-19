@@ -23,11 +23,17 @@ export class BlogStoreService {
 
   createBlogPost(blogPost: BlogPost) {
     blogPost.datePublished = new Date();
-    blogPost.author = this.userInfo;
+    // blogPost.author = this.userInfo;
 
     this.blogPostsCollection
       .add(blogPost)
-      .then(resp => console.log(resp));
+      .then(resp => {
+        // TODO: Propper success handling
+      },
+        err => {
+          // TODO: propper error handling
+          console.log(err);
+        });
   }
 
   getBlogPosts(): Observable<BlogPost[]> {

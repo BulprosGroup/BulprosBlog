@@ -32,7 +32,7 @@ export class AuthService {
                 userInfo.displayName = user.displayName;
                 userInfo.providerId = user.providerId;
                 userInfo.photoURL = user.photoURL;
-                userInfo.uid = user.uid;
+                // userInfo.uid = user.uid;
             } else {
                 this.user = null;
                 userInfo.isAnonymous = true;
