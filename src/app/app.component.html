@@ -5,7 +5,7 @@
 
     <mat-sidenav-content>
         <mat-toolbar color="primary">
-            <div>
+            <div fxHide.gt-xs>
                 <button mat-icon-button (click)="sidenav.toggle()">
                     <mat-icon class="mat-18">menu</mat-icon>
                 </button>
@@ -16,7 +16,7 @@
                 </a>
             </div>
 
-            <div class="nav-items-container" fxFlex fxLayout>
+            <div class="nav-items-container" fxFlex fxLayout fxHide.xs>
                 <ul class="nav-items" fxLayout fxLayoutGap="5%" fxLayoutAlign="flex-start">
                     <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <a [routerLink]="['']">Home</a>
