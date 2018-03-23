@@ -26,4 +26,8 @@ export class HeaderComponent implements OnInit {
   currentUser(): Observable<UserInfo> {
     return this.authService.currentUser();
   }
+
+  logout() {
+    this.authService.logout();
+  }
 }

@@ -1,3 +1,3 @@
-<p *ngFor="let post of blogPosts">
-  <span>{{ post.datePublished }}</span>
-</p>
+<section class="dashboard" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1%">
+  <app-blog-post-card *ngFor="let post of blogPosts" [blogPost]="post"></app-blog-post-card>
+</section>

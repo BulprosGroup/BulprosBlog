@@ -1,19 +1,22 @@
-<section class="blog-post" fxLayout fxLayoutAlign="center">
+<section class="blog-post" fxLayout="row" fxLayoutAlign="center">
 
   <mat-card fxFlex="400px">
     <mat-card-header>
-      <mat-card-title>Title</mat-card-title>
-      <mat-card-subtitle>Subtitle</mat-card-subtitle>
+      <mat-card-title>
+        <h3>{{ blogPost.title }}</h3>
+      </mat-card-title>
+      <mat-card-subtitle>Author: {{ blogPost.author }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et enim voluptatibus ad natus delectus optio aperiam fugit, iure
-      maiores eius incidunt. Laborum nostrum cum neque deleniti est exercitationem doloribus at!
+      {{ blogPost.description }}
     </mat-card-content>
-    <mat-card-actions align="start">
+    <mat-card-actions align="center">
       <button mat-raised-button color="accent" (click)="onAction1">Read</button>
     </mat-card-actions>
     <mat-card-footer align="end">
-      Published on: 22-03-2018
+      <small>
+        Published on: {{ blogPost.datePublished | date: 'mediumDate' }}
+      </small>
     </mat-card-footer>
   </mat-card>
 
