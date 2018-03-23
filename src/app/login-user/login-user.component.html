@@ -1,18 +1,21 @@
-<h3>Please Log In</h3>
-<div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6">
-        <a href="#" class="btn btn-lg btn-primary btn-block" (click)="loginVia($event, 'twitter')">Twitter</a>
-    </div>
-    <div class="col-xs-6 col-sm-6 col-md-6">
-        <a href="#" class="btn btn-lg btn-info btn-block" (click)="loginVia($event, 'google')">Google</a>
-    </div>
-</div>
-<div class="login-or">
-    <hr class="hr-or">
-    <span class="span-or">or</span>
-</div>
+<section class="login-form">
+    <h3>Please Log In</h3>
 
-<form [formGroup]="form" role="form" (ngSubmit)="login()" novalidate>
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1%" [formGroup]="form" role="form" (ngSubmit)="login()" novalidate>
+        <mat-form-field>
+            <input class="form-control" type="email" matInput placeholder="Email" [formControl]="email" required email name="email"/>
+            <mat-error *ngIf="email.hasError('required')">Email is required.</mat-error>
+            <mat-error *ngIf="email.hasError('email')">Email is not valid.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input class="form-control" type="password" matInput placeholder="Password" required [formControl]="password" name="password" />
+            <mat-error *ngIf="password.hasError('required')">Password is required.</mat-error>
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="primary" [disabled]="form.invalid">Log In</button>
+    </form>
+</section>
+
+<!-- <form [formGroup]="form" role="form" (ngSubmit)="login()" novalidate>
     <div class="form-group" [class.has-error]="email.invalid && email.touched">
         <label for="email">Email</label>
         <input [formControl]="email" required type="text" class="form-control" id="email" name="email">
@@ -36,4 +39,4 @@
     <button type="submit" class="btn btn btn-primary">
         Log In
     </button>
-</form>
+</form> -->

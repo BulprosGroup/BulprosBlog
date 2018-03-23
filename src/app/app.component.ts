@@ -1,9 +1,9 @@
-import {Component} from "@angular/core";
-import {AuthService} from "app/shared/auth.service";
+import { Component } from "@angular/core";
+import { AuthService } from "app/shared/auth.service";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import {Router} from "@angular/router";
-import {UserInfo} from "app/shared/user-info";
+import { Router } from "@angular/router";
+import { UserInfo } from "app/shared/user-info";
 
 @Component({
     selector: 'app-root',
