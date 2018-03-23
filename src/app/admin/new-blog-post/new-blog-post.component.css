@@ -1,0 +1,13 @@
+.new-blog-post {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+mat-form-field, .content-editor {
+    width: 100%;
+}
+
+mat-divider {
+    margin: 10px;
+}

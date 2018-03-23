@@ -23,13 +23,16 @@ import { RegisterUserComponent } from "app/register-user/register-user.component
 import { NewBlogPostComponent } from "app/admin/new-blog-post/new-blog-post.component";
 
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
-import { HomePageComponent } from "./pages/home-page.component";
 import { RegisterPageComponent } from "./pages/register-page.component";
 import { LoginPageComponent } from "./pages/login-page.component";
 import { LoggedInGuard } from "app/shared/logged-in-guard";
 import { DashboardPageComponent } from './admin/dashboard/dashboard-page.component';
 
 import { AppRoutingModule } from "./app-routing.module";
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { HomePageComponent } from './home/home.component';
+import { BlogPostCardComponent } from './blog-post-card/blog-post-card.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +45,10 @@ import { AppRoutingModule } from "./app-routing.module";
         RegisterPageComponent,
         LoginPageComponent,
         DashboardPageComponent,
-        NewBlogPostComponent
+        NewBlogPostComponent,
+        HeaderComponent,
+        SidenavListComponent,
+        BlogPostCardComponent
     ],
     imports: [
         BrowserModule,

@@ -1,0 +1,17 @@
+<mat-nav-list>
+    <mat-list-item>
+        <div *ngIf="(isLoggedIn|async)" fxLayout="row" fxLayoutAlign="center center" (click)="onClose()">
+            <mat-icon class="mat-18">account_box</mat-icon>
+            <div class="name-holder"> 
+                {{(currentUser()|async).displayName}}
+            </div>
+        </div>
+    </mat-list-item>
+    <a *ngIf="!(isLoggedIn|async)" [routerLink]="['login']" mat-list-item (click)="onClose()">Login</a>
+    <a [routerLink]="['dashboard']" *ngIf="(isLoggedIn|async)" mat-list-item (click)="onClose()">Dashboard</a>
+    <a [routerLink]="['new-blog-post']" *ngIf="(isLoggedIn|async)" mat-list-item (click)="onCose()">New Post</a>
+
+    <mat-divider></mat-divider>
+    
+    <a *ngIf="(isLoggedIn|async)" (click)="logout()" href="#" mat-list-item (click)="onClose()">Logout</a>
+</mat-nav-list>

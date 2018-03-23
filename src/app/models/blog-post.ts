@@ -1,8 +1,7 @@
-import { UserInfo } from "../shared/user-info";
-
 export class BlogPost {
-    author: UserInfo;
+    authorName: string;
     content: string;
+    description: string;
     datePublished: Date;
     dateModified: Date;
     title: string;

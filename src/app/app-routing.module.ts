@@ -5,7 +5,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { LoginPageComponent } from './pages/login-page.component';
 import { DashboardPageComponent } from './admin/dashboard/dashboard-page.component';
 import { NewBlogPostComponent } from './admin/new-blog-post/new-blog-post.component';
-import { HomePageComponent } from './pages/home-page.component';
+import { HomePageComponent } from './home/home.component';
 
 import { LoggedInGuard } from './shared/logged-in-guard';
 

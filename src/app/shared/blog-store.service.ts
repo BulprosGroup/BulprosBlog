@@ -23,7 +23,7 @@ export class BlogStoreService {
 
   createBlogPost(blogPost: BlogPost) {
     blogPost.datePublished = new Date();
-    // blogPost.author = this.userInfo;
+    blogPost.authorName = this.userInfo.displayName;
 
     this.blogPostsCollection
       .add(blogPost)

@@ -1,0 +1,17 @@
+.home-container {
+    height: 100%;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.article-holder {
+    flex-wrap: wrap;
+}
+
+/* .blog-post-sample {
+    width: 300px;
+} */
+
+.blog-post-content {
+    text-align: justify;
+}

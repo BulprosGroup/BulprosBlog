@@ -19,6 +19,7 @@ export class NewBlogPostComponent {
   form: FormGroup;
   content: AbstractControl;
   title: AbstractControl;
+  description: AbstractControl;
   blogPost: BlogPost;
   showPreview: boolean;
   options: FroalaEditorModule;
@@ -28,11 +29,13 @@ export class NewBlogPostComponent {
 
     this.form = fb.group({
       'title': ['', Validators.required],
-      'content': ['', Validators.required]
+      'content': ['', Validators.required],
+      'description': ['', Validators.required]
     });
 
     this.content = this.form.controls['content'];
     this.title = this.form.controls['title'];
+    this.description = this.form.controls['description'];
     this.options = this.getFroalaOptions();
   }
 
@@ -58,7 +61,8 @@ export class NewBlogPostComponent {
         indent_size: 4,
         wrap_line_length: 0
       },
-      height: 500,
+      heightMin: 500,
+      heightMax: 900,
     };
   }
 }
