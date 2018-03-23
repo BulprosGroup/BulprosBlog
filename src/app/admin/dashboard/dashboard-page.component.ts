@@ -16,7 +16,10 @@ export class DashboardPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.blogService.getBlogPosts().subscribe(posts => this.blogPosts = posts);
+    this.blogService.getBlogPosts().subscribe(posts => {
+      console.table(posts);
+      this.blogPosts = posts
+    });
   }
 
 }

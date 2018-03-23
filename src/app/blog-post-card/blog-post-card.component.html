@@ -1,6 +1,6 @@
-<section class="blog-post" fxLayout="row" fxLayoutAlign="center">
+<section class="blog-post" fxLayout="row" fxLayoutAlign="center center">
 
-  <mat-card fxFlex="400px">
+  <mat-card>
     <mat-card-header>
       <mat-card-title>
         <h3>{{ blogPost.title }}</h3>
@@ -14,9 +14,12 @@
       <button mat-raised-button color="accent" (click)="onAction1">Read</button>
     </mat-card-actions>
     <mat-card-footer align="end">
-      <small>
+      <small *ngIf="!blogPost.dateModified">
         Published on: {{ blogPost.datePublished | date: 'mediumDate' }}
       </small>
+      <small *ngIf="blogPost.dateModified">
+          Last modified on: {{ blogPost.dateModified | date: 'mediumDate' }}
+        </small>
     </mat-card-footer>
   </mat-card>
 
