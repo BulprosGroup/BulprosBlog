@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterPageComponent } from './pages/register-page.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { LoginPageComponent } from './pages/login-page.component';
 import { DashboardPageComponent } from './admin/dashboard/dashboard-page.component';
 import { NewBlogPostComponent } from './admin/new-blog-post/new-blog-post.component';

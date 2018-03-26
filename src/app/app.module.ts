@@ -15,17 +15,17 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { AppComponent } from "./app.component";
 import { MaterialModule } from './material.module';
-import { AuthService } from "app/shared/auth.service";
-import { BlogStoreService } from "app/shared/blog-store.service";
-import { LoginUserComponent } from "app/login-user/login-user.component";
-import { DisplayUserComponent } from "app/display-user/display-user.component";
-import { RegisterUserComponent } from "app/register-user/register-user.component";
-import { NewBlogPostComponent } from "app/admin/new-blog-post/new-blog-post.component";
+import { AuthService } from "./shared/auth.service";
+import { BlogStoreService } from "./shared/blog-store.service";
+import { LoginUserComponent } from "./auth/login-user/login-user.component";
+import { DisplayUserComponent } from "./auth/display-user/display-user.component";
+import { RegisterUserComponent } from "./auth/register-user/register-user.component";
+import { NewBlogPostComponent } from "./admin/new-blog-post/new-blog-post.component";
 
-import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { ResetPasswordComponent } from "./auth/reset-password/reset-password.component";
 import { RegisterPageComponent } from "./pages/register-page.component";
 import { LoginPageComponent } from "./pages/login-page.component";
-import { LoggedInGuard } from "app/shared/logged-in-guard";
+import { LoggedInGuard } from "./shared/logged-in-guard";
 import { DashboardPageComponent } from './admin/dashboard/dashboard-page.component';
 
 import { AppRoutingModule } from "./app-routing.module";
