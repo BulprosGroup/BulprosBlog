@@ -2,10 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { AngularFirestore } from 'angularfire2/firestore';
 
-import { AuthService } from './auth.service';
-
-import { Observable } from 'rxjs/Observable';
-
 import { UserInfo } from '../shared/user-info';
 import { BlogPost } from '../models/blog-post';
 import { Subject } from 'rxjs';
@@ -18,19 +14,9 @@ export class BlogStoreService {
 
   constructor(private afs: AngularFirestore) { }
 
-  createBlogPost(blogPost: BlogPost) {
+  createBlogPost(blogPost: BlogPost): Promise<any> {
     blogPost.datePublished = new Date();
-    blogPost.authorName = this.userInfo.displayName;
-
-    // this.blogPostsCollection
-    //   .add(blogPost)
-    //   .then(resp => {
-    //     // TODO: Propper success handling
-    //   },
-    //     err => {
-    //       // TODO: propper error handling
-    //       console.log(err);
-    //     });
+    return this.afs.collection('BlogPosts').add(blogPost);
   }
 
   fetchBlogPosts() {
@@ -51,6 +37,6 @@ export class BlogStoreService {
   }
 
   getBlogPostById(id: string) {
-    // return this.blogPostsCollection.doc(id);
+    return this.afs.collection('BlogPosts').doc(id);
   }
 }
