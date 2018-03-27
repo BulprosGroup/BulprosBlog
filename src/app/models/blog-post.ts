@@ -3,6 +3,6 @@ export class BlogPost {
     content: string;
     description: string;
     datePublished: Date;
-    dateModified: Date;
+    dateModified?: Date;
     title: string;
 }
