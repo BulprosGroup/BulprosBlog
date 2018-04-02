@@ -1,21 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 import { AngularFirestore } from 'angularfire2/firestore';
 
 import { UserInfo } from '../shared/user-info';
 import { BlogPost } from '../models/blog-post';
 import { Subject } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class BlogStoreService {
   blogPostsChanged = new Subject<BlogPost[]>();
   private blogPosts: BlogPost[] = [];
-  private userInfo: UserInfo;
 
   constructor(private afs: AngularFirestore) { }
 
-  createBlogPost(blogPost: BlogPost): Promise<any> {
+  createBlogPost(blogPost: BlogPost, userInfo: UserInfo) {
     blogPost.datePublished = new Date();
+    blogPost.status = blogPost.status || 'published';
+
+    blogPost.authorId = userInfo.uid;
+    blogPost.authorName = userInfo.displayName;
+
     return this.afs.collection('BlogPosts').add(blogPost);
   }
 
@@ -41,6 +46,7 @@ export class BlogStoreService {
   }
 
   updateBlogPost(blogPost: BlogPost) {
+    blogPost.dateModified = new Date();
     return this.afs.collection('BlogPosts')
       .doc(blogPost.id)
       .update(blogPost);
@@ -48,7 +54,7 @@ export class BlogStoreService {
 
   deleteBlogPost(id: string) {
     return this.afs.collection('BlogPosts')
-                .doc(id)
-                .delete();
+      .doc(id)
+      .delete();
   }
 }

@@ -2,6 +2,7 @@ export class BlogPost {
     id?: string;
     authorId: string;
     authorName: string;
+    category: string;
     content: string;
     description: string;
     datePublished: Date;

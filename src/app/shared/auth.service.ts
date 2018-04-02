@@ -26,13 +26,12 @@ export class AuthService {
             this.user = user;
             let userInfo = new UserInfo();
             if (user != null) {
-
                 userInfo.isAnonymous = user.isAnonymous;
                 userInfo.email = user.email;
                 userInfo.displayName = user.displayName;
                 userInfo.providerId = user.providerId;
                 userInfo.photoURL = user.photoURL;
-                // userInfo.uid = user.uid;
+                userInfo.uid = user.uid;
             } else {
                 this.user = null;
                 userInfo.isAnonymous = true;

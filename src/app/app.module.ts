@@ -35,6 +35,7 @@ import { HomePageComponent } from './home/home.component';
 import { BlogPostCardComponent } from './blog-post-card/blog-post-card.component';
 import { UIService } from "./shared/ui.service";
 import { DeleteDialogComponent } from "./shared/delete-dialog/delete-dialog.component";
+import { SettingsService } from "./shared/settings.service";
 
 @NgModule({
     declarations: [
@@ -68,7 +69,7 @@ import { DeleteDialogComponent } from "./shared/delete-dialog/delete-dialog.comp
         FroalaEditorModule.forRoot(),
         FroalaViewModule.forRoot()
     ],
-    providers: [AuthService, BlogStoreService, LoggedInGuard, UIService],
+    providers: [AuthService, BlogStoreService, SettingsService, LoggedInGuard, UIService],
     entryComponents: [DeleteDialogComponent],
     bootstrap: [AppComponent]
 })

@@ -4,7 +4,7 @@
     <mat-form-field>
       <input type="text" placeholder="Title..." class="form-control" matInput name="title" [formControl]="title" required minlength="10"
       />
-      <mat-hint align="end">{{ title.value?.length}} / 100</mat-hint>
+      <mat-hint align="end">{{ title.value?.length}} / 10</mat-hint>
       <mat-error *ngIf="title.hasError('required')">Title is required.</mat-error>
       <mat-error *ngIf="title.hasError('minlength')">Title should be at least 10 characters.</mat-error>
     </mat-form-field>
@@ -14,13 +14,22 @@
         required minlength="100"></textarea>
       <mat-hint align="end">{{ description.value?.length }} / 100</mat-hint>
       <mat-error *ngIf="description.hasError('required')">Description is required.</mat-error>
-      <mat-error *ngIf="description.hasError('minlength')">Description should be at least 10 characters.</mat-error>
+      <mat-error *ngIf="description.hasError('minlength')">Description should be at least 100 characters.</mat-error>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+
+    <mat-form-field>
+      <mat-select name="category" [formControl]="category" placeholder="Category..." required>
+        <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="category.hasError('required')">Category is required.</mat-error>
     </mat-form-field>
 
     <mat-divider></mat-divider>
 
     <div class="content-editor">
-        <textarea [froalaEditor]='options' formControlName="content" [(froalaModel)]="form.content" required="true"></textarea>
+      <textarea [froalaEditor]='options' formControlName="content" [(froalaModel)]="form.content" required="true"></textarea>
     </div>
 
     <mat-divider></mat-divider>
@@ -31,7 +40,10 @@
 
     <div fxLayout="row">
       <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">
-        <mat-icon class="mat-18">send</mat-icon> Submit
+        <mat-icon class="mat-18">send</mat-icon> Publish
+      </button>
+      <button type="button" mat-raised-button color="primary" [disabled]="!form.valid" (click)="saveDraft()">
+        <mat-icon class="mat-18">send</mat-icon> Save Draft
       </button>
       <button type="button" mat-raised-button color="accent" [ngClass]="showPreview ? 'hidden' : ''" (click)="previewContent()">
         <mat-icon class="mat-18">pageview</mat-icon> Preview
