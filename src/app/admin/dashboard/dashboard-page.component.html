@@ -1,5 +1,43 @@
-<section class="dashboard" fxFlex>
-  <section fxLayout="column" fxLayout.gt-md="row" fxLayoutAlign="center center" fxLayoutGap="1%">
-    <app-blog-post-card *ngFor="let post of blogPosts" [blogPost]="post"></app-blog-post-card>
-  </section>
+<section class="dashboard" fxLayout="column" fxLayoutAlign="center center">
+  <div class="dashboard-spinner" *ngIf="!isDataLoaded">
+    <mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
+  </div>
+
+  <div class="dashboard-table" fxLayout="row" *ngIf="isDataLoaded">
+    <div fxFlex>
+      <mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.title }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.status }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="datePublished">
+          <mat-header-cell *matHeaderCellDef>Date Published</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.datePublished | date }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dateModified">
+          <mat-header-cell *matHeaderCellDef>Date Modified</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.dateModified | date }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <mat-icon class="mat-18">publish</mat-icon>
+            <mat-icon class="mat-18">mode_edit</mat-icon>
+            <mat-icon class="mat-18" color="warn">delete_forever</mat-icon>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </div>
 </section>

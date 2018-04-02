@@ -1,3 +1,9 @@
 .dashboard {
-    width: 900px;
+    min-height: 20em;
+    height: 35em;
+    max-height: 50em;
+}
+
+.dashboard-table {
+    width: 90%;
 }
