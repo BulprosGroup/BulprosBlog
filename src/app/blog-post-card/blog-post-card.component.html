@@ -14,7 +14,7 @@
       {{ blogPost.description }}
     </mat-card-content>
     <mat-card-actions align="center">
-      <button mat-raised-button color="accent" (click)="onAction1">Read</button>
+      <a [routerLink]="['blog-post', blogPost.id]" mat-button>Read</a>
     </mat-card-actions>
     <mat-card-footer align="end">
       <small *ngIf="!blogPost.dateModified">

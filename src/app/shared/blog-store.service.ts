@@ -42,7 +42,7 @@ export class BlogStoreService {
   }
 
   getBlogPostById(id: string) {
-    return this.afs.collection('BlogPosts').doc(id);
+    return this.afs.collection('BlogPosts').doc(id).valueChanges();
   }
 
   updateBlogPost(blogPost: BlogPost) {

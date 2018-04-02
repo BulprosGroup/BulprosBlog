@@ -1,0 +1,16 @@
+<section class="blog-post">
+  <div class="header-info" fxLayout="column" fxLayoutAlign="center center">
+    <h2>{{ blogPost.title }}</h2>
+    <div class="author">by
+      <b>{{ blogPost.authorName }}</b>
+    </div>
+    <div class="date">
+      <small>Published on: {{ blogPost.datePublished | date }}</small>
+      <small *ngIf="blogPost.dateModified">, Last Modified: {{ blogPost.dateModified | date }}</small>
+    </div>
+    <div class="category">
+      {{ blogPost.category }}
+    </div>
+  </div>
+  <div class="content" fxLayout="row" [innerHTML]="blogPost.content"></div>
+</section>

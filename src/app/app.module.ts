@@ -36,6 +36,7 @@ import { BlogPostCardComponent } from './blog-post-card/blog-post-card.component
 import { UIService } from "./shared/ui.service";
 import { DeleteDialogComponent } from "./shared/delete-dialog/delete-dialog.component";
 import { SettingsService } from "./shared/settings.service";
+import { BlogPostComponent } from './blog-post/blog-post.component';
 
 @NgModule({
     declarations: [
@@ -52,7 +53,8 @@ import { SettingsService } from "./shared/settings.service";
         HeaderComponent,
         SidenavListComponent,
         BlogPostCardComponent,
-        DeleteDialogComponent
+        DeleteDialogComponent,
+        BlogPostComponent
     ],
     imports: [
         BrowserModule,

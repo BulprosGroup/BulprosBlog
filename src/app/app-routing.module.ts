@@ -8,6 +8,7 @@ import { NewBlogPostComponent } from './admin/new-blog-post/new-blog-post.compon
 import { HomePageComponent } from './home/home.component';
 
 import { LoggedInGuard } from './shared/logged-in-guard';
+import { BlogPostComponent } from './blog-post/blog-post.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'dashboard', component: DashboardPageComponent, canActivate: [LoggedInGuard] },
   { path: 'new-blog-post', component: NewBlogPostComponent, canActivate: [LoggedInGuard] },
+  { path: 'blog-post/:id', component: BlogPostComponent },
   { path: '', component: HomePageComponent }
 ];
 
