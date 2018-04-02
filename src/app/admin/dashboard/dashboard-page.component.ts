@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Observable, Subscription } from 'rxjs';
 
 import { BlogStoreService } from '../../shared/blog-store.service';
@@ -11,11 +11,14 @@ import { UIService } from '../../shared/ui.service';
   templateUrl: './dashboard-page.component.html',
   styleUrls: ['./dashboard-page.component.css']
 })
-export class DashboardPageComponent implements OnInit, OnDestroy {
+export class DashboardPageComponent implements OnInit, OnDestroy, AfterViewInit {
   dataSource = new MatTableDataSource();
-  displayedColumns = ['title', 'status', 'datePublished', 'dateModified', 'actions'];
+  displayedColumns = ['title', 'category', 'status', 'datePublished', 'dateModified', 'actions'];
   isDataLoaded = false;
   private blogPostsSubscription: Subscription;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private blogService: BlogStoreService, private ui: UIService) {
   }
@@ -31,6 +34,11 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.blogPostsSubscription.unsubscribe();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   publish(blogPost) {
@@ -68,8 +76,12 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
           .catch((err) => {
             this.ui.showSnackbar(`'${blogPost.title}' was NOT deleted.`, null, { duration: 3000 });
           });
-      } 
+      }
     });
   }
 
+  filterByTitle(filterTerm) {
+    console.log(filterTerm);
+    this.dataSource.filter = filterTerm.trim().toLowerCase();
+  }
 }
