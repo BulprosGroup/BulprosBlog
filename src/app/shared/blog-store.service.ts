@@ -39,4 +39,16 @@ export class BlogStoreService {
   getBlogPostById(id: string) {
     return this.afs.collection('BlogPosts').doc(id);
   }
+
+  updateBlogPost(blogPost: BlogPost) {
+    return this.afs.collection('BlogPosts')
+      .doc(blogPost.id)
+      .update(blogPost);
+  }
+
+  deleteBlogPost(id: string) {
+    return this.afs.collection('BlogPosts')
+                .doc(id)
+                .delete();
+  }
 }

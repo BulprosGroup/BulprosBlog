@@ -33,6 +33,8 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { HomePageComponent } from './home/home.component';
 import { BlogPostCardComponent } from './blog-post-card/blog-post-card.component';
+import { UIService } from "./shared/ui.service";
+import { DeleteDialogComponent } from "./shared/delete-dialog/delete-dialog.component";
 
 @NgModule({
     declarations: [
@@ -48,7 +50,8 @@ import { BlogPostCardComponent } from './blog-post-card/blog-post-card.component
         NewBlogPostComponent,
         HeaderComponent,
         SidenavListComponent,
-        BlogPostCardComponent
+        BlogPostCardComponent,
+        DeleteDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -65,7 +68,8 @@ import { BlogPostCardComponent } from './blog-post-card/blog-post-card.component
         FroalaEditorModule.forRoot(),
         FroalaViewModule.forRoot()
     ],
-    providers: [AuthService, BlogStoreService, LoggedInGuard],
+    providers: [AuthService, BlogStoreService, LoggedInGuard, UIService],
+    entryComponents: [DeleteDialogComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,8 +1,11 @@
 export class BlogPost {
+    id?: string;
+    authorId: string;
     authorName: string;
     content: string;
     description: string;
     datePublished: Date;
     dateModified?: Date;
     title: string;
+    status: 'published' | 'draft' | 'deleted' | null;
 }
