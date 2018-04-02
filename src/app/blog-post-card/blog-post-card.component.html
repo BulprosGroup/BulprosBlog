@@ -1,11 +1,14 @@
 <section class="blog-post" fxLayout="row" fxLayoutAlign="center center">
 
-  <mat-card fxFlex.lt-sm fxFlex="400px">
+  <mat-card fxFlex.lt-sm fxFlex>
     <mat-card-header>
       <mat-card-title>
         <h3>{{ blogPost.title }}</h3>
       </mat-card-title>
-      <mat-card-subtitle>Author: {{ blogPost.author }}</mat-card-subtitle>
+      <mat-card-subtitle>
+        <div class="author">Author: {{ blogPost.authorName }}</div>
+        <div class="category">Category: {{ blogPost.category }}</div>
+      </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       {{ blogPost.description }}
@@ -18,8 +21,8 @@
         Published on: {{ blogPost.datePublished | date: 'mediumDate' }}
       </small>
       <small *ngIf="blogPost.dateModified">
-          Last modified on: {{ blogPost.dateModified | date: 'mediumDate' }}
-        </small>
+        Last modified on: {{ blogPost.dateModified | date: 'mediumDate' }}
+      </small>
     </mat-card-footer>
   </mat-card>
 

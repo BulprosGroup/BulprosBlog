@@ -1,3 +1,5 @@
-<section class="home-container" fxLayout="column" fxLayout.gt-md="row" fxLayoutGap.gt-md="1%" fxLayoutAlign="center center">
-    <app-blog-post-card *ngFor="let post of blogPosts" [blogPost]="post"></app-blog-post-card>
+<section class="home-container" fxFlex>
+    <div class="home-inner-container" fxLayout="column" fxLayout.gt-md="row" fxLayoutGap.gt-md="1%" fxLayoutAlign="center center">
+        <app-blog-post-card fxFlex *ngFor="let post of blogPosts" [blogPost]="post"></app-blog-post-card>
+    </div>
 </section>
