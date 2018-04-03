@@ -1,17 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, AbstractControl, FormGroup, FormControl } from "@angular/forms";
-
-import { BlogStoreService } from "app/shared/blog-store.service";
-import { AuthService } from "app/shared/auth.service";
 import { Observable } from "rxjs/Observable";
+import { Subscription } from 'rxjs';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+
+import { AuthService } from "app/auth/auth.service";
 
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
-import { BlogPost } from '../../models/blog-post';
 import { SettingsService } from '../../shared/settings.service';
-import { Subscription } from 'rxjs';
-import { UserInfo } from '../../shared/user-info';
+import { UserInfo } from 'app/auth/user-info';
+import { BlogPost } from '../../blog/blog-post';
+import { BlogStoreService } from '../../blog/blog-store.service';
 
 @Component({
   selector: 'app-new-blog-post',

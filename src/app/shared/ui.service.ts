@@ -3,7 +3,6 @@ import { Subject } from 'rxjs';
 import { MatSnackBar, MatDialog } from '@angular/material';
 
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
-import { BlogPost } from '../models/blog-post';
 
 @Injectable()
 export class UIService {

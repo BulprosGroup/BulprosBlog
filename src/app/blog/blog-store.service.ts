@@ -1,11 +1,9 @@
 import { Injectable, OnInit } from '@angular/core';
-
 import { AngularFirestore } from 'angularfire2/firestore';
-
-import { UserInfo } from '../shared/user-info';
-import { BlogPost } from '../models/blog-post';
 import { Subject } from 'rxjs';
-import { AuthService } from './auth.service';
+
+import { BlogPost } from './blog-post';
+import { UserInfo } from '../auth/user-info';
 
 @Injectable()
 export class BlogStoreService {

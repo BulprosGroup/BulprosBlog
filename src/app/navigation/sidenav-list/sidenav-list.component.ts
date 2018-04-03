@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AuthService } from 'app/shared/auth.service';
-import { UserInfo } from 'app/shared/user-info';
+import { AuthService } from 'app/auth/auth.service';
+import { UserInfo } from 'app/auth/user-info';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

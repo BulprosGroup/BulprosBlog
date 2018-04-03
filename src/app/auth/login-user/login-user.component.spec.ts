@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {LoginUserComponent} from "./login-user.component";
-import {AuthService} from "app/shared/auth.service";
+import {AuthService} from "app/auth/auth.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AsyncSubject, Observable, ReplaySubject} from "rxjs";
-import {UserInfo} from "app/shared/user-info";
-import {AuthServiceStub} from "app/shared/auth.service.stub";
+import {UserInfo} from "app/auth/user-info";
+import {AuthServiceStub} from "app/auth/auth.service.stub";
 
 describe('LoginUserComponent', () => {
     let component: LoginUserComponent;

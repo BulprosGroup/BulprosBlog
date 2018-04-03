@@ -2,9 +2,8 @@ import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Observable, Subscription } from 'rxjs';
 
-import { BlogStoreService } from '../../shared/blog-store.service';
-import { BlogPost } from '../../models/blog-post';
 import { UIService } from '../../shared/ui.service';
+import { BlogStoreService } from '../../blog/blog-store.service';
 
 @Component({
   selector: 'app-dashboard-page',

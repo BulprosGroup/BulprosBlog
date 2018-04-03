@@ -1,5 +1,5 @@
 import {AsyncSubject, Observable, ReplaySubject} from "rxjs";
-import {UserInfo} from "app/shared/user-info";
+import {UserInfo} from "app/auth/user-info";
 
 export class AuthServiceStub {
 

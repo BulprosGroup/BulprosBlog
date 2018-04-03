@@ -2,8 +2,8 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {RegisterUserComponent} from "./register-user.component";
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
-import {AuthService} from "app/shared/auth.service";
-import {AuthServiceStub} from "app/shared/auth.service.stub";
+import {AuthService} from "app/auth/auth.service";
+import {AuthServiceStub} from "app/auth/auth.service.stub";
 
 describe('RegisterUserComponent', () => {
     let component: RegisterUserComponent;

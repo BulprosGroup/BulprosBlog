@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogStoreService } from '../shared/blog-store.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { BlogPost } from '../models/blog-post';
+
+import { BlogPost } from '../blog-post';
+import { BlogStoreService } from '../blog-store.service';
 
 @Component({
   selector: 'app-blog-post',

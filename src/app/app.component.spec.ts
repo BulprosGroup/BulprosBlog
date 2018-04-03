@@ -2,8 +2,9 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, async } from "@angular/core/testing";
 import { AppComponent } from "./app.component";
-import { AuthService } from "app/shared/auth.service";
-import { AuthServiceStub } from "app/shared/auth.service.stub";
+
+import { AuthServiceStub } from "app/auth/auth.service.stub";
+import { AuthService } from './auth/auth.service';
 
 describe('AppComponent', () => {
     beforeEach(() => {

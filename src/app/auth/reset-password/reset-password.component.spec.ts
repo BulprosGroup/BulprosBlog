@@ -1,8 +1,8 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {ResetPasswordComponent} from "./reset-password.component";
-import {AuthServiceStub} from "app/shared/auth.service.stub";
+import {AuthServiceStub} from "app/auth/auth.service.stub";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {AuthService} from "app/shared/auth.service";
+import {AuthService} from "app/auth/auth.service";
 
 describe('ResetPasswordComponent', () => {
     let component: ResetPasswordComponent;
