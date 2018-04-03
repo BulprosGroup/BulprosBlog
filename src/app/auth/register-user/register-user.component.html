@@ -1,56 +1,28 @@
-<h3>Register</h3>
-<form [formGroup]="form" role="form" (ngSubmit)="onSubmit()" novalidate>
-    <div class="form-group" [class.has-error]="name.invalid && name.touched">
-        <label for="name" class="control-label">Name</label>
-        <input [formControl]="name" required type="text" class="form-control" id="name" name="name">
-        <div class="help-block">
-            <ul class="list-unstyled">
-                <li *ngIf="name.valid || name.pristine">Enter your name</li>
-                <li *ngIf="name.dirty && name.hasError('required')">A name is required</li>
-            </ul>
-        </div>
-    </div>
-    <div class="form-group" [class.has-error]="email.invalid && email.touched">
-        <label for="email" class="control-label">Email</label>
-        <input [formControl]="email" required type="email" class="form-control" id="email" name="email">
-        <div class="help-block">
-            <ul class="list-unstyled">
-                <li *ngIf="email.valid || email.pristine">Enter your email address</li>
-                <li *ngIf="email.dirty && email.hasError('required')">An email address is required</li>
-                <li *ngIf="email.dirty && email.hasError('email')">Please enter a valid email address</li>
-            </ul>
-        </div>
-    </div>
-    <div class="form-group" [class.has-error]="password.invalid && password.touched">
-        <label for="password">Password</label>
-        <input [formControl]="password" type="password" required class="form-control" id="password" name="password">
-        <div class="help-block">
-            <ul class="list-unstyled">
-                <li *ngIf="password.dirty && password.valid || password.pristine">Enter your password</li>
-                <li *ngIf="password.dirty && password.hasError('required')">A password is required</li>
-            </ul>
-        </div>
-    </div>
-    <div class="form-group"
-         [class.has-error]="(password2.invalid || form.hasError('mismatchedPasswords')) && password2.touched">
-        <label for="password2">Repeat Password</label>
-        <input [formControl]="password2" type="password" required class="form-control" id="password2"
-               name="password2">
-        <div class="help-block">
-            <ul class="list-unstyled">
-                <li *ngIf="(password2.valid && !form.hasError('mismatchedPasswords')) || password2.pristine">Repeat
-                    your
-                    password
-                </li>
-                <li *ngIf="password2.dirty && password2.hasError('required')">A password is required</li>
-                <li *ngIf="password2.dirty && password2.valid && form.hasError('mismatchedPasswords')">Passwords
-                    don't
-                    match
-                </li>
-            </ul>
-        </div>
-    </div>
-    <button type="submit" class="btn btn btn-primary" [disabled]="!form.valid">
-        Register
-    </button>
-</form>
+<section class="register-form">
+    <h3>Register</h3>
+
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="2%" [formGroup]="form" role="form" (ngSubmit)="onSubmit()"
+        novalidate>
+        <mat-form-field>
+            <input class="form-control" type="text" matInput placeholder="Name" required [formControl]="name" name="name" />
+            <mat-error *ngIf="name.hasError('required')">Name is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input class="form-control" type="email" matInput placeholder="Email" [formControl]="email" required email name="email" />
+            <mat-error *ngIf="email.hasError('required')">Email is required.</mat-error>
+            <mat-error *ngIf="email.hasError('email')">Email is not valid.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input class="form-control" type="password" matInput placeholder="Password" required [formControl]="password" name="password"
+            />
+            <mat-error *ngIf="password.hasError('required')">Password is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input class="form-control" type="password" matInput placeholder="Repeat password" required [formControl]="password2" name="password2"
+            [errorStateMatcher]="matcher" />
+            <mat-error *ngIf="password2.hasError('required')">Password is required.</mat-error>
+            <mat-error *ngIf="password2.dirty">Passwords does not match.</mat-error>
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="primary" [disabled]="form.invalid">Register</button>
+    </form>
+</section>

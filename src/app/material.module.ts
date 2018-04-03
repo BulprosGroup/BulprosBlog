@@ -15,7 +15,9 @@ import {
     MatDialogModule,
     MatSelectModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    ErrorStateMatcher,
+    ShowOnDirtyErrorStateMatcher
 } from '@angular/material';
 
 @NgModule({
@@ -32,6 +34,9 @@ import {
         MatListModule, MatCardModule, MatProgressSpinnerModule,
         MatSnackBarModule, MatDialogModule, MatSelectModule,
         MatTableModule, MatPaginatorModule, MatSortModule
+    ],
+    providers: [
+        { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
     ]
 })
 export class MaterialModule {

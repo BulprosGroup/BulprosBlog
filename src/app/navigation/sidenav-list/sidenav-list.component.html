@@ -8,6 +8,7 @@
         </div>
     </mat-list-item>
     <a *ngIf="!(isLoggedIn|async)" [routerLink]="['login']" mat-list-item (click)="onClose()">Login</a>
+    <a *ngIf="!(isLoggedIn|async)" [routerLink]="['register']" mat-list-item (click)="onClose()">Register</a>
     <a [routerLink]="['dashboard']" *ngIf="(isLoggedIn|async)" mat-list-item (click)="onClose()">Dashboard</a>
     <a [routerLink]="['new-blog-post']" *ngIf="(isLoggedIn|async)" mat-list-item (click)="onCose()">New Post</a>
 

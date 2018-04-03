@@ -1,8 +1,16 @@
-import {Component, OnInit, EventEmitter, Output} from "@angular/core";
-import {AuthService} from "app/auth/auth.service";
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
+import { AuthService } from "app/auth/auth.service";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import {FormGroup, AbstractControl, FormBuilder, Validators} from "@angular/forms";
+import { FormGroup, AbstractControl, FormBuilder, Validators, FormGroupDirective, NgForm, FormControl } from "@angular/forms";
+import { ErrorStateMatcher } from "@angular/material";
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MatchingPasswordValidator implements ErrorStateMatcher {
+    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+        return form.hasError('mismatchedPasswords');
+    }
+}
 
 @Component({
     selector: 'app-register-user',
@@ -15,12 +23,13 @@ export class RegisterUserComponent {
     name: AbstractControl;
     password: AbstractControl;
     password2: AbstractControl;
+    matcher = new MatchingPasswordValidator();
 
     @Output() onSuccess = new EventEmitter();
     @Output() onError = new EventEmitter();
 
     constructor(private authService: AuthService,
-                private fb: FormBuilder) {
+        private fb: FormBuilder) {
         this.form = fb.group({
             'name': ['', Validators.required],
             'email': ['', Validators.compose([
@@ -29,7 +38,7 @@ export class RegisterUserComponent {
             )],
             'password': ['', Validators.required],
             'password2': ['', Validators.required]
-        }, {validator: this.matchingPasswords('password', 'password2')});
+        }, { validator: this.matchingPasswords('password', 'password2') });
         this.name = this.form.controls['name'];
         this.email = this.form.controls['email'];
         this.password = this.form.controls['password'];
@@ -50,7 +59,7 @@ export class RegisterUserComponent {
     }
 
     matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
-        return (group: FormGroup): {[key: string]: any} => {
+        return (group: FormGroup): { [key: string]: any } => {
             let password = group.controls[passwordKey];
             let confirmPassword = group.controls[confirmPasswordKey];
 
