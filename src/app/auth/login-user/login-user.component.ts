@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Output} from "@angular/core";
-import {AuthService} from "app/auth/auth.service";
-import {FormBuilder, Validators, AbstractControl, FormGroup} from "@angular/forms";
+import { Component, EventEmitter, Output } from "@angular/core";
+import { AuthService } from "app/auth/auth.service";
+import { FormBuilder, Validators, AbstractControl, FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-login-user',
@@ -14,7 +15,11 @@ export class LoginUserComponent {
     @Output() onSuccess = new EventEmitter();
     @Output() onError = new EventEmitter();
 
-    constructor(private authService: AuthService, private fb: FormBuilder) {
+    constructor(
+        private authService: AuthService,
+        private fb: FormBuilder,
+        private router: Router
+    ) {
         this.form = fb.group({
             'email': ['', Validators.required],
             'password': ['', Validators.required]
@@ -28,6 +33,7 @@ export class LoginUserComponent {
             this.authService.login(this.email.value, this.password.value)
                 .subscribe(
                     () => {
+                        this.router.navigate(['/dashboard']);
                         this.onSuccess.emit();
                         this.form.reset();
                     },

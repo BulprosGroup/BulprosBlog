@@ -7,6 +7,7 @@ import { Subject } from "rxjs/Subject";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 import { UserInfo } from "./user-info";
+import { UIService } from "../shared/ui.service";
 
 @Injectable()
 export class AuthService {
@@ -21,7 +22,10 @@ export class AuthService {
     userInfo = new BehaviorSubject<UserInfo>(AuthService.UNKNOWN_USER);
     private user: firebase.User;
 
-    constructor(private angularFireAuth: AngularFireAuth) {
+    constructor(
+        private angularFireAuth: AngularFireAuth,
+        private ui: UIService
+    ) {
         this.angularFireAuth.authState.subscribe(user => {
             // console.log("user: ", JSON.stringify(user));
             this.user = user;
@@ -44,8 +48,18 @@ export class AuthService {
     login(email: string, password: string): Observable<string> {
         let result = new Subject<string>();
         this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
-            .then(() => result.next("success"))
-            .catch(err => result.error(err));
+            .then(() => {
+                this.ui.showSnackbar("Successful login.", null, {
+                    duration: 3000
+                });
+                result.next("success");
+            })
+            .catch(err => {
+                this.ui.showSnackbar(err.message, null, {
+                    duration: 3000
+                });
+                result.error(err)
+            });
         return result.asObservable();
     }
 
@@ -57,8 +71,18 @@ export class AuthService {
         let result = new Subject<string>();
         this.userInfo.next(AuthService.UNKNOWN_USER);
         this.angularFireAuth.auth.signOut()
-            .then(() => result.next("success"))
-            .catch(err => result.error(err));
+            .then(() => {
+                this.ui.showSnackbar('Successful logout.', null, {
+                    duration: 3000
+                });
+                result.next("success");
+            })
+            .catch(err => {
+                this.ui.showSnackbar(err.message, null, {
+                    duration: 3000
+                });
+                result.error(err);
+            });
         return result.asObservable();
     }
 

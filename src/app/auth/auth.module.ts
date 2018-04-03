@@ -2,7 +2,9 @@ import { NgModule } from "@angular/core";
 import { AngularFireAuthModule } from "angularfire2/auth";
 
 import { AuthRoutingModule } from "./auth-routing.module";
+
 import { AuthService } from "./auth.service";
+import { UIService } from "../shared/ui.service";
 
 import { LoginUserComponent } from "./login-user/login-user.component";
 import { RegisterUserComponent } from "./register-user/register-user.component";
@@ -25,7 +27,7 @@ import { SharedModule } from "../shared/shared.module";
         AngularFireAuthModule,
         AuthRoutingModule
       ],
-      providers: [AuthService]
+      providers: [AuthService, UIService]
 })
 export class AuthModule {
 

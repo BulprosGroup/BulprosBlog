@@ -4,6 +4,8 @@ import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { FormGroup, AbstractControl, FormBuilder, Validators, FormGroupDirective, NgForm, FormControl } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material";
+import { UIService } from "../../shared/ui.service";
+import { Router } from "@angular/router";
 
 export class MatchingPasswordValidator implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -27,7 +29,10 @@ export class RegisterUserComponent {
     @Output() onSuccess = new EventEmitter();
     @Output() onError = new EventEmitter();
 
-    constructor(private authService: AuthService,
+    constructor(
+        private authService: AuthService,
+        private ui: UIService,
+        private router: Router,
         private fb: FormBuilder) {
         this.form = fb.group({
             'name': ['', Validators.required],
@@ -49,10 +54,13 @@ export class RegisterUserComponent {
             this.authService.createUser(this.email.value, this.password.value, this.name.value)
                 .subscribe(
                     () => {
+                        this.router.navigate(['/dashboard']);
                         this.onSuccess.emit("success");
                         this.form.reset();
                     },
-                    err => this.onError.emit(err)
+                    err => {
+                        this.onError.emit(err)
+                    }
                 );
         }
     }
