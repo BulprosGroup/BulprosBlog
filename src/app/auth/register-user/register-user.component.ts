@@ -5,7 +5,6 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { FormGroup, AbstractControl, FormBuilder, Validators, FormGroupDirective, NgForm, FormControl } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material";
 
-/** Error when invalid control is dirty, touched, or submitted. */
 export class MatchingPasswordValidator implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
         return form.hasError('mismatchedPasswords');
