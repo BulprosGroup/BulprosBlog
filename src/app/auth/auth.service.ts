@@ -9,6 +9,10 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { UserInfo } from "./user-info";
 import { UIService } from "../shared/ui.service";
 
+import { Store } from "@ngrx/store";
+import * as fromRoot from "../app.reducer";
+import * as Auth from "../auth/auth.actions";
+
 @Injectable()
 export class AuthService {
     static UNKNOWN_USER = {
@@ -24,10 +28,10 @@ export class AuthService {
 
     constructor(
         private angularFireAuth: AngularFireAuth,
-        private ui: UIService
+        private ui: UIService,
+        private store: Store<fromRoot.State>
     ) {
         this.angularFireAuth.authState.subscribe(user => {
-            // console.log("user: ", JSON.stringify(user));
             this.user = user;
             let userInfo = new UserInfo();
             if (user != null) {
@@ -53,12 +57,14 @@ export class AuthService {
                     duration: 3000
                 });
                 result.next("success");
+                this.store.dispatch(new Auth.SetAuthenticated());
             })
             .catch(err => {
                 this.ui.showSnackbar(err.message, null, {
                     duration: 3000
                 });
-                result.error(err)
+                result.error(err);
+                this.store.dispatch(new Auth.SetUnauthenticated());                
             });
         return result.asObservable();
     }
@@ -76,12 +82,14 @@ export class AuthService {
                     duration: 3000
                 });
                 result.next("success");
+                this.store.dispatch(new Auth.SetUnauthenticated());                
             })
             .catch(err => {
                 this.ui.showSnackbar(err.message, null, {
                     duration: 3000
                 });
                 result.error(err);
+                this.store.dispatch(new Auth.SetUnauthenticated());                                
             });
         return result.asObservable();
     }
@@ -109,9 +117,19 @@ export class AuthService {
         this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password)
             .then(() => {
                 //auth.auth.updateProfile({displayName: displayName, photoURL: null});
+                this.ui.showSnackbar('User successfully created.', null, {
+                    duration: 3000
+                });
                 result.next("success");
+                this.store.dispatch(new Auth.SetAuthenticated());                                
             })
-            .catch(err => result.error(err));
+            .catch(err => { 
+                this.ui.showSnackbar(err.message, null, {
+                    duration: 3000
+                });
+                result.error(err);
+                this.store.dispatch(new Auth.SetUnauthenticated());
+            });
 
         return result.asObservable();
     }
@@ -140,27 +158,5 @@ export class AuthService {
             .then(() => result.next("success"))
             .catch(err => result.error(err));
         return result;
-    }
-
-    loginViaProvider(provider: string): Observable<String> {
-        let result = new Subject<string>();
-        if (provider === "google") {
-            this.angularFireAuth
-                .auth
-                .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-                .then(auth => result.next("success"))
-                .catch(err => result.error(err));
-            return result.asObservable();
-        }
-        else if (provider === "twitter") {
-            this.angularFireAuth
-                .auth
-                .signInWithPopup(new firebase.auth.TwitterAuthProvider())
-                .then(auth => result.next("success"))
-                .catch(err => result.error(err));
-            return result.asObservable();
-        }
-        result.error("Not a supported authentication method: " + provider)
-        return result.asObservable();
     }
 }

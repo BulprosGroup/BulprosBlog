@@ -1,6 +1,9 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../app.reducer';
+
+import { Observable } from 'rxjs';
 
 import { UserInfo } from 'app/auth/user-info';
 import { AuthService } from 'app/auth/auth.service';
@@ -12,12 +15,12 @@ import { AuthService } from 'app/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
   @Output() sidenavToggle = new EventEmitter<void>();
-  isLoggedIn = new BehaviorSubject<boolean>(false);
+  isAuth$: Observable<boolean>;
 
-  constructor(private authService: AuthService) {
-    this.authService.isLoggedIn().subscribe(this.isLoggedIn);
-  }
+  constructor(private store: Store<fromRoot.State>,  private authService: AuthService) {  }
+  
   ngOnInit() {
+    this.isAuth$ = this.store.select(fromRoot.getIsAuth);
   }
 
   onToggleSidenav() {

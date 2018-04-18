@@ -16,24 +16,24 @@
                 <a [routerLink]="['']">Home</a>
             </li>
             <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a [routerLink]="['dashboard']" *ngIf="(isLoggedIn|async)">Dashboard</a>
+                <a [routerLink]="['dashboard']" *ngIf="(isAuth$ | async)">Dashboard</a>
             </li>
             <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a [routerLink]="['new-blog-post']" *ngIf="(isLoggedIn|async)">New Post</a>
+                <a [routerLink]="['new-blog-post']" *ngIf="(isAuth$ | async)">New Post</a>
             </li>
         </ul>
 
         <div fxFlex></div>
 
         <ul class="nav-items" fxLayout fxLayoutGap="5%" fxLayoutAlign="flex-end">
-            <li *ngIf="(isLoggedIn|async)" class="navbar-text">{{(currentUser()|async).displayName}}</li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="!(isLoggedIn|async)">
+            <li *ngIf="(isAuth$ | async)" class="navbar-text">{{ (currentUser() | async).displayName }}</li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="!( isAuth$ | async)">
                 <a [routerLink]="['login']">Login</a>
             </li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="!(isLoggedIn|async)">
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="!(isAuth$ | async)">
                 <a [routerLink]="['register']">Register</a>
             </li>
-            <li *ngIf="(isLoggedIn|async)">
+            <li *ngIf="(isAuth$ | async)">
                 <a (click)="logout()" href="#">Logout</a>
             </li>
         </ul>

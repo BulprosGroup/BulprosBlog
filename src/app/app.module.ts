@@ -6,6 +6,7 @@ import { firebaseConfig } from "environments/firebaseConfig";
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule  } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { StoreModule } from '@ngrx/store';
 
 import { SharedModule } from "./shared/shared.module";
 import { AdminModule } from "./admin/admin-module.module";
@@ -22,6 +23,8 @@ import { HomePageComponent } from './home/home.component';
 import { UIService } from "./shared/ui.service";
 import { DeleteDialogComponent } from "./shared/delete-dialog/delete-dialog.component";
 import { SettingsService } from "./shared/settings.service";
+
+import { reducers } from './app.reducer';
 
 
 @NgModule({
@@ -41,7 +44,8 @@ import { SettingsService } from "./shared/settings.service";
         AuthModule,
         BlogModule,
         AngularFireModule.initializeApp(firebaseConfig, "BulprosBlog"),
-        AngularFirestoreModule
+        AngularFirestoreModule,
+        StoreModule.forRoot(reducers)
     ],
     bootstrap: [AppComponent]
 })
