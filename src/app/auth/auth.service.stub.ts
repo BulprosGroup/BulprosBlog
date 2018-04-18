@@ -24,11 +24,4 @@ export class AuthServiceStub {
         }
         return replaySubject;
     }
-
-    isLoggedIn(): Observable<boolean> {
-        let isLoggedInBS = new AsyncSubject<boolean>();
-        isLoggedInBS.next(true);
-        isLoggedInBS.complete();
-        return isLoggedInBS;
-    }
 }

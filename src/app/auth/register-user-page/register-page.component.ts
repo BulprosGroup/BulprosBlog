@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
 import {Observable} from "rxjs";
-import {AuthService} from "app/auth/auth.service";
+
+import { Store } from "@ngrx/store";
+import * as fromRoot from '../../app.reducer';
 
 @Component({
     selector: 'app-register-page',
@@ -8,11 +10,8 @@ import {AuthService} from "app/auth/auth.service";
     styleUrls: ['./register-page.component.css']
 })
 export class RegisterPageComponent {
-
-    constructor(private authService: AuthService) {
-    }
-
-    isLoggedIn(): Observable<boolean> {
-        return this.authService.isLoggedIn();
+    isAuth$: Observable<boolean>;
+    constructor(private store: Store<fromRoot.State>) {
+        this.isAuth$ = this.store.select(fromRoot.getIsAuth);
     }
 }

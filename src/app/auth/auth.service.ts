@@ -94,10 +94,6 @@ export class AuthService {
         return result.asObservable();
     }
 
-    isLoggedIn(): Observable<boolean> {
-        return this.userInfo.map(userInfo => !userInfo.isAnonymous);
-    }
-
     updateDisplayName(displayName: string): Observable<string> {
         let result = new Subject<string>();
         this.user.updateProfile({ displayName: displayName, photoURL: null })

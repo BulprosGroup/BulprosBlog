@@ -1,8 +1,9 @@
-import {Component} from "@angular/core";
-import {AuthService} from "app/auth/auth.service";
-import { Observable } from "rxjs/Observable";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import {Router} from "@angular/router";
+import { Component } from "@angular/core";
+import { Observable } from "rxjs";
+import { Router } from "@angular/router";
+
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../app.reducer';
 
 @Component({
     selector: 'app-login-page',
@@ -10,10 +11,10 @@ import {Router} from "@angular/router";
     styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent {
-    isLoggedIn = new BehaviorSubject<boolean>(false);
+    isAuth$: Observable<boolean>;
 
-    constructor(private authService: AuthService, private router: Router) {
-        this.authService.isLoggedIn().subscribe(this.isLoggedIn);
+    constructor(private store: Store<fromRoot.State>, private router: Router) {
+        this.isAuth$ = this.store.select(fromRoot.getIsAuth);
     }
 
     navigateToResetPassword($event) {
