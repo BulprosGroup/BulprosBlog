@@ -1,16 +1,20 @@
 import { Injectable, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Subject } from 'rxjs';
 
 import { BlogPost } from './blog-post';
 import { UserInfo } from '../auth/user-info';
 
+import { Store } from '@ngrx/store';
+
+import * as UI from '../shared/ui.actions';
+import * as BlogPosts from './blog.actions';
+import * as fromBlogPosts from './blog.reducer';
+
 @Injectable()
 export class BlogStoreService {
-  blogPostsChanged = new Subject<BlogPost[]>();
-  private blogPosts: BlogPost[] = [];
-
-  constructor(private afs: AngularFirestore) { }
+  constructor(
+    private afs: AngularFirestore,
+    private store: Store<fromBlogPosts.State>) { }
 
   createBlogPost(blogPost: BlogPost, userInfo: UserInfo) {
     blogPost.datePublished = new Date();
@@ -23,6 +27,8 @@ export class BlogStoreService {
   }
 
   fetchBlogPosts() {
+    this.store.dispatch(new UI.StartLoading()); // triggers the loading event
+    
     this.afs.collection('BlogPosts')
       .snapshotChanges()
       .map(docArray => {
@@ -34,8 +40,8 @@ export class BlogStoreService {
         });
       })
       .subscribe((posts: any) => {
-        this.blogPosts = posts as BlogPost[];
-        this.blogPostsChanged.next([...this.blogPosts]);
+        this.store.dispatch(new UI.StopLoading());
+        this.store.dispatch(new BlogPosts.SetAvailableBlogPosts(posts));
       });
   }
 

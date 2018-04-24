@@ -1,6 +1,9 @@
-import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Observable, Subscription } from 'rxjs';
+
+import * as fromBlogPosts from '../../blog/blog.reducer';
 
 import { UIService } from '../../shared/ui.service';
 import { BlogStoreService } from '../../blog/blog-store.service';
@@ -10,29 +13,26 @@ import { BlogStoreService } from '../../blog/blog-store.service';
   templateUrl: './dashboard-page.component.html',
   styleUrls: ['./dashboard-page.component.css']
 })
-export class DashboardPageComponent implements OnInit, OnDestroy, AfterViewInit {
+export class DashboardPageComponent implements OnInit,  AfterViewInit {
   dataSource = new MatTableDataSource();
   displayedColumns = ['title', 'category', 'status', 'datePublished', 'dateModified', 'actions'];
   isDataLoaded = false;
-  private blogPostsSubscription: Subscription;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private blogService: BlogStoreService, private ui: UIService) {
-  }
+  constructor(
+    private blogService: BlogStoreService,
+    private ui: UIService,
+    private store: Store<fromBlogPosts.State>
+  ) {  }
 
   ngOnInit() {
-    this.blogPostsSubscription = this.blogService.blogPostsChanged
-      .subscribe(posts => {
-        this.isDataLoaded = posts != null;
+      this.store.select(fromBlogPosts.getAvailableBlogPosts).subscribe(posts => {
+        this.isDataLoaded = posts != null;        
         this.dataSource.data = posts
       });
     this.blogService.fetchBlogPosts();
-  }
-
-  ngOnDestroy() {
-    this.blogPostsSubscription.unsubscribe();
   }
 
   ngAfterViewInit() {
