@@ -1,6 +1,6 @@
-<section class="blog-post" fxLayout="row" fxLayoutAlign="center center">
+<section class="blog-post">
 
-  <mat-card fxFlex.lt-sm>
+  <mat-card>
     <mat-card-header>
       <mat-card-title>
         <h3>{{ blogPost.title }}</h3>
@@ -14,7 +14,7 @@
       {{ blogPost.description }}
     </mat-card-content>
     <mat-card-actions align="center">
-      <a [routerLink]="['blog-post', blogPost.id]" mat-button>Read</a>
+      <a [routerLink]="['blog-post', blogPost.id]" mat-raised-button color="primary">Read</a>
     </mat-card-actions>
     <mat-card-footer align="end">
       <small *ngIf="!blogPost.dateModified">

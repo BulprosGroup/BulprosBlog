@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from '../material.module';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { ExtractLinksPipe } from './extract-links.pipe';
 
 @NgModule({
     imports: [
@@ -19,7 +20,9 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
         FormsModule,
         ReactiveFormsModule,        
         MaterialModule,
-        FlexLayoutModule
-    ]
+        FlexLayoutModule,
+        ExtractLinksPipe
+    ],
+    declarations: [ExtractLinksPipe]
 })
 export class SharedModule { }

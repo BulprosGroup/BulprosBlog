@@ -1,0 +1,19 @@
+// custom theme for the angular material to apply the Bulpros styles
+// you can check the official theming guide:
+// https://material.angular.io/guide/theming
+// or you can check the official material color palette as well:
+// https://material.io/guidelines/style/color.html#color-color-palette 
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$bulpros-app-primary: mat-palette($mat-light-blue);
+$bulpros-app-accent:  mat-palette($mat-indigo, A400, A100, A700);
+
+// The warn palette is optional (defaults to red).
+$bulpros-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$bulpros-app-theme: mat-dark-theme($bulpros-app-primary, $bulpros-app-accent, $bulpros-app-warn);
+
+@include angular-material-theme($bulpros-app-theme);

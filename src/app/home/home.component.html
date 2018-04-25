@@ -1,7 +1,9 @@
-<section class="home-container" fxFlex>
-    <div class="home-inner-container" fxLayout.lt-sm="column" fxLayout.gt-md="row" fxLayoutGap.gt-md="1%" fxLayoutAlign="center center">
-        <div fxFlex.lt-md="1 1 100%" fxFlex.gt-sm *ngFor="let post of blogPosts$ | async">
-            <app-blog-post-card fxFlex [blogPost]="post"></app-blog-post-card>
-        </div>
+<section class="home-container" fxlayout="row" fxlayout.lt-md="column">
+    <div class="blog-post-container" fxFlex="66" fxLayoutGap="5px">
+        <app-blog-post-card *ngFor="let post of blogPosts$ | async" [blogPost]="post"></app-blog-post-card>
+    </div>
+
+    <div class="social-container" fxFlex="33">
+        <app-social></app-social>
     </div>
 </section>

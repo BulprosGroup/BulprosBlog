@@ -1,0 +1,13 @@
+<mat-card class="fb-post-card">
+  <mat-card-header *ngIf="post.story">
+    <mat-card-title>{{ post.story }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="{{ post.full_picture }}" alt="{{ post.story }}">
+  <mat-card-content>
+    <p [innerHTML]="post.message | extractLinks"> </p>
+  </mat-card-content>
+  <mat-card-actions fxLayoutAlign="center center">
+    <a href="https://www.facebook.com/BULPROS/posts/{{ post.id.split('_')[1] }}" target="_blank" rel="noopener, nofollow" mat-raised-button
+      color="accent">Check in FB</a>
+  </mat-card-actions>
+</mat-card>

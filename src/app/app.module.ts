@@ -12,6 +12,7 @@ import { SharedModule } from "./shared/shared.module";
 import { AdminModule } from "./admin/admin-module.module";
 import { AuthModule } from "./auth/auth.module";
 import { BlogModule } from "./blog/blog.module";
+import { SocialModule } from "./social/social.module";
 
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -25,7 +26,6 @@ import { DeleteDialogComponent } from "./shared/delete-dialog/delete-dialog.comp
 import { SettingsService } from "./shared/settings.service";
 
 import { reducers } from './app.reducer';
-
 
 @NgModule({
     declarations: [
@@ -43,6 +43,7 @@ import { reducers } from './app.reducer';
         AdminModule,
         AuthModule,
         BlogModule,
+        SocialModule,
         AngularFireModule.initializeApp(firebaseConfig, "BulprosBlog"),
         AngularFirestoreModule,
         StoreModule.forRoot(reducers)

@@ -1,0 +1,3 @@
+<section fxflex fxLayout="column" fxLayoutGap="5px">
+    <app-facebook *ngFor="let fbPost of fbPosts$ | async" [post]="fbPost"></app-facebook>
+</section>
