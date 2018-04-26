@@ -6,7 +6,7 @@ import * as Social from './social.actions';
 import * as fromSocial from './social.reducer';
 import { FacebookPost } from './facebook/facebookPost.model';
 
-const FB_ACCESS_TOKEN = 'EAACEdEose0cBAM9Ao7Rd2TeBuz89DctamHe0TREUb2olLwy7avYxbzoqvN0PZB8ZBQgZCjubWyUtesRiw3HoHxVXGZBu4fgzzMMrCcXfPibCvxV6z0GZC25T1DLgRoinzLcYkcyq3n3hGkT6DAJZBeZCKuKoRhKsilXVFxV2JmPgPRbATCgW6anZBCi7TCGZBSacZD';
+const FB_ACCESS_TOKEN = 'EAACEdEose0cBAJqgNJaUtZAhNkDEffgTbebAoQV5ZA6S0Pxtby4FJZCsPbooAjhgqUGx0g5lGcVYlngm2GBQOymqNl6DAoPEdVVPeY5tHomdO9OWMQ70Jv0QcRJZCnSUNemxxSkBuUEpCRL17JgFFAikhd0H8w5d4nGdB74OOZBACfFTfE1Bxa2b2HCS4dmyJyedHH1I5usAns3TdCTkN';
 const VERSION = 'v2.12';
 const PAGE_ID = 'Bulpros';
 const FIELDS = 'full_picture,id,story,message,created_time';

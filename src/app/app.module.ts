@@ -48,7 +48,8 @@ import { reducers } from './app.reducer';
         AngularFirestoreModule,
         StoreModule.forRoot(reducers)
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [DeleteDialogComponent]
 })
 export class AppModule {
 }
