@@ -26,6 +26,7 @@ import { DeleteDialogComponent } from "./shared/delete-dialog/delete-dialog.comp
 import { SettingsService } from "./shared/settings.service";
 
 import { reducers } from './app.reducer';
+import { FooterComponent } from "./footer/footer.component";
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { reducers } from './app.reducer';
         HomePageComponent,
         HeaderComponent,
         SidenavListComponent,
-        DeleteDialogComponent
+        DeleteDialogComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,

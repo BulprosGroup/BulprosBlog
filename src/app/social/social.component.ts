@@ -20,7 +20,7 @@ export class SocialComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.social.fetchFacebookPost();
-    this.fbPosts$ = this.store.select(fromSocial.getFbPosts);
+    // this.social.fetchFacebookPost();
+    // this.fbPosts$ = this.store.select(fromSocial.getFbPosts);
   }
 }

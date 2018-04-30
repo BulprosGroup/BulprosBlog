@@ -1,5 +1,5 @@
 <section class="home-container" fxlayout="row" fxlayout.lt-md="column">
-    <div class="blog-post-container" fxFlex="66" fxLayoutGap="5px">
+    <div class="blog-post-container" fxFlex="66" fxLayoutGap="5px" fxFlex.lt-md="100">
         <app-blog-post-card *ngFor="let post of blogPosts$ | async" [blogPost]="post"></app-blog-post-card>
     </div>
 
