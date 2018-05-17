@@ -12,5 +12,5 @@
       {{ blogPost.category }}
     </div>
   </div>
-  <div class="content" fxLayout="row" [innerHTML]="blogPost.content"></div>
+  <div class="content" fxLayout="column" [innerHTML]="blogPost.content | keepHtml"></div>
 </section>

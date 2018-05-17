@@ -1,0 +1,60 @@
+<section class="new-blog-post">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field>
+      <input type="text" placeholder="Title..." class="form-control" matInput name="title" [formControl]="title" required minlength="10"
+      />
+      <mat-hint align="end">{{ title.value?.length}} / 10</mat-hint>
+      <mat-error *ngIf="title.hasError('required')">Title is required.</mat-error>
+      <mat-error *ngIf="title.hasError('minlength')">Title should be at least 10 characters.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea type="text" placeholder="Description..." class="form-control" matInput matTextareaAutosize name="description" [formControl]="description"
+        required minlength="100"></textarea>
+      <mat-hint align="end">{{ description.value?.length }} / 100</mat-hint>
+      <mat-error *ngIf="description.hasError('required')">Description is required.</mat-error>
+      <mat-error *ngIf="description.hasError('minlength')">Description should be at least 100 characters.</mat-error>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+
+    <mat-form-field>
+      <mat-select name="category" [formControl]="category" placeholder="Category..." required>
+        <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="category.hasError('required')">Category is required.</mat-error>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+
+    <div class="content-editor">
+      <textarea [froalaEditor]='options' formControlName="content" [(froalaModel)]="form.content" required="true"></textarea>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div fxLayout="row">
+      <div [ngClass]="showPreview ? 'preview' : 'hidden'" [froalaView]="form.content"></div>
+    </div>
+
+    <div fxLayout="row">
+      <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid" *ngIf="!blogPost.id">
+        <mat-icon class="mat-18">send</mat-icon> Publish
+      </button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid" *ngIf="blogPost.id">
+          <mat-icon class="mat-18">edit</mat-icon> Edit
+        </button>
+      <button type="button" mat-raised-button color="primary" [disabled]="!form.valid" (click)="saveDraft()" *ngIf="!blogPost.id">
+        <mat-icon class="mat-18">send</mat-icon> Save Draft
+      </button>
+      <button type="button" mat-raised-button color="accent" [ngClass]="showPreview ? 'hidden' : ''" (click)="previewContent()">
+        <mat-icon class="mat-18">pageview</mat-icon> Preview
+      </button>
+      <button type="button" mat-raised-button color="warn" [ngClass]="showPreview ? '' : 'hidden'" (click)="previewContent()">
+        <mat-icon class="mat-18">close</mat-icon> Hide Preview
+      </button>
+    </div>
+
+  </form>
+</section>

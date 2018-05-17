@@ -7,6 +7,7 @@ import * as fromBlogPosts from '../../blog/blog.reducer';
 
 import { UIService } from '../../shared/ui.service';
 import { BlogStoreService } from '../../blog/blog-store.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -24,7 +25,8 @@ export class DashboardPageComponent implements OnInit,  AfterViewInit {
   constructor(
     private blogService: BlogStoreService,
     private ui: UIService,
-    private store: Store<fromBlogPosts.State>
+    private store: Store<fromBlogPosts.State>,
+    private router: Router
   ) {  }
 
   ngOnInit() {
@@ -55,14 +57,16 @@ export class DashboardPageComponent implements OnInit,  AfterViewInit {
     }
   }
 
-  edit(blogPost) {
-    this.blogService.updateBlogPost(blogPost)
-      .then((resp) => {
-        this.ui.showSnackbar(`'${blogPost.title}' was updated successfully.`, null, { duration: 3000 });
-      })
-      .catch((err) => {
-        this.ui.showSnackbar(`'${blogPost.title}' was NOT updated.`, null, { duration: 3000 });
-      });;
+  navigateToUpdate(blogPost) {
+      this.router.navigate(['/update-blog-post', blogPost.id]);
+
+    // this.blogService.updateBlogPost(blogPost)
+    //   .then((resp) => {
+    //     this.ui.showSnackbar(`'${blogPost.title}' was updated successfully.`, null, { duration: 3000 });
+    //   })
+    //   .catch((err) => {
+    //     this.ui.showSnackbar(`'${blogPost.title}' was NOT updated.`, null, { duration: 3000 });
+    //   });;
   }
 
   delete(blogPost) {
@@ -80,7 +84,6 @@ export class DashboardPageComponent implements OnInit,  AfterViewInit {
   }
 
   filterByTitle(filterTerm) {
-    console.log(filterTerm);
     this.dataSource.filter = filterTerm.trim().toLowerCase();
   }
 }

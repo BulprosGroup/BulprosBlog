@@ -41,9 +41,11 @@ export class AuthService {
                 userInfo.providerId = user.providerId;
                 userInfo.photoURL = user.photoURL;
                 userInfo.uid = user.uid;
+                this.store.dispatch(new Auth.SetAuthenticated());                
             } else {
                 this.user = null;
                 userInfo.isAnonymous = true;
+                this.store.dispatch(new Auth.SetUnauthenticated());                                
             }
             this.userInfo.next(userInfo);
         });

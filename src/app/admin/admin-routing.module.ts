@@ -4,13 +4,15 @@ import { StoreModule } from '@ngrx/store';
 
 import { DashboardPageComponent } from './dashboard/dashboard-page.component';
 import { NewBlogPostComponent } from './new-blog-post/new-blog-post.component';
+import { UpdateBlogPostComponent } from './update-blog-post/update-blog-post.component';
 
 import { LoggedInGuard } from '../auth/logged-in-guard';
 import { blogPostsReducer } from '../blog/blog.reducer';
 
 const routes: Routes = [
     { path: 'dashboard', component: DashboardPageComponent, canActivate: [LoggedInGuard] },
-    { path: 'new-blog-post', component: NewBlogPostComponent, canActivate: [LoggedInGuard] }
+    { path: 'new-blog-post', component: NewBlogPostComponent, canActivate: [LoggedInGuard] },
+    { path: 'update-blog-post/:id', component: UpdateBlogPostComponent, canActivate: [LoggedInGuard] },
   ];
 
 @NgModule({
