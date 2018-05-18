@@ -7,6 +7,7 @@ export const firebaseConfig = {
     databaseURL: "https://bulprosblog.firebaseio.com",
     storageBucket: "bulprosblog.appspot.com",
     messagingSenderId: "1003093706142",
-    projectId: 'bulprosblog'
+    projectId: 'bulprosblog',
+    timestampsInSnapshots: true
 };
 
